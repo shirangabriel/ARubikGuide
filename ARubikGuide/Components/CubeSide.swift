@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CubeSide: View {
     
-    var colors: [[Color]]
+    let colors: [[Color]]
     
     init(colors: [[Color]] = []) {
         self.colors = colors
@@ -17,9 +17,6 @@ struct CubeSide: View {
     
     
     var body: some View {
-        Button(action: {
-                // do something
-        }) {
             VStack {
                 ForEach(colors, id: \.self) { row in
                     HStack{
@@ -33,7 +30,6 @@ struct CubeSide: View {
                     
                 }
             }.padding(5)
-        }
     }
 }
 
