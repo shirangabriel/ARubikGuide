@@ -11,6 +11,12 @@
 		00771C522B5BB3ED009D20A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00771C512B5BB3ED009D20A1 /* ContentView.swift */; };
 		00771C542B5BB3F0009D20A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00771C532B5BB3F0009D20A1 /* Assets.xcassets */; };
 		00771C572B5BB3F0009D20A1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00771C562B5BB3F0009D20A1 /* Preview Assets.xcassets */; };
+		00771C5F2B5BCD7A009D20A1 /* CubieTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00771C5E2B5BCD7A009D20A1 /* CubieTile.swift */; };
+		00771C622B5BCF7F009D20A1 /* CubeSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00771C612B5BCF7F009D20A1 /* CubeSide.swift */; };
+		00771C642B5BD067009D20A1 /* CubieTileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00771C632B5BD067009D20A1 /* CubieTileButton.swift */; };
+		00771C672B5BE124009D20A1 /* RubiksCubeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00771C662B5BE124009D20A1 /* RubiksCubeData.swift */; };
+		00771C692B5C41C9009D20A1 /* GridStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00771C682B5C41C9009D20A1 /* GridStack.swift */; };
+		00771C6C2B5C4976009D20A1 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00771C6B2B5C4976009D20A1 /* Utility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +25,12 @@
 		00771C512B5BB3ED009D20A1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		00771C532B5BB3F0009D20A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00771C562B5BB3F0009D20A1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		00771C5E2B5BCD7A009D20A1 /* CubieTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubieTile.swift; sourceTree = "<group>"; };
+		00771C612B5BCF7F009D20A1 /* CubeSide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeSide.swift; sourceTree = "<group>"; };
+		00771C632B5BD067009D20A1 /* CubieTileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubieTileButton.swift; sourceTree = "<group>"; };
+		00771C662B5BE124009D20A1 /* RubiksCubeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubiksCubeData.swift; sourceTree = "<group>"; };
+		00771C682B5C41C9009D20A1 /* GridStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridStack.swift; sourceTree = "<group>"; };
+		00771C6B2B5C4976009D20A1 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +63,11 @@
 		00771C4E2B5BB3ED009D20A1 /* ARubikGuide */ = {
 			isa = PBXGroup;
 			children = (
+				00771C6A2B5C4964009D20A1 /* Utility */,
+				00771C652B5BE117009D20A1 /* Data */,
 				00771C4F2B5BB3ED009D20A1 /* ARubikGuideApp.swift */,
-				00771C512B5BB3ED009D20A1 /* ContentView.swift */,
+				00771C602B5BCE09009D20A1 /* Home */,
+				00771C5D2B5BCD5E009D20A1 /* Components */,
 				00771C532B5BB3F0009D20A1 /* Assets.xcassets */,
 				00771C552B5BB3F0009D20A1 /* Preview Content */,
 			);
@@ -65,6 +80,41 @@
 				00771C562B5BB3F0009D20A1 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		00771C5D2B5BCD5E009D20A1 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				00771C5E2B5BCD7A009D20A1 /* CubieTile.swift */,
+				00771C632B5BD067009D20A1 /* CubieTileButton.swift */,
+				00771C612B5BCF7F009D20A1 /* CubeSide.swift */,
+				00771C682B5C41C9009D20A1 /* GridStack.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		00771C602B5BCE09009D20A1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				00771C512B5BB3ED009D20A1 /* ContentView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		00771C652B5BE117009D20A1 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				00771C662B5BE124009D20A1 /* RubiksCubeData.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		00771C6A2B5C4964009D20A1 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				00771C6B2B5C4976009D20A1 /* Utility.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +188,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				00771C522B5BB3ED009D20A1 /* ContentView.swift in Sources */,
+				00771C672B5BE124009D20A1 /* RubiksCubeData.swift in Sources */,
+				00771C622B5BCF7F009D20A1 /* CubeSide.swift in Sources */,
 				00771C502B5BB3ED009D20A1 /* ARubikGuideApp.swift in Sources */,
+				00771C6C2B5C4976009D20A1 /* Utility.swift in Sources */,
+				00771C692B5C41C9009D20A1 /* GridStack.swift in Sources */,
+				00771C642B5BD067009D20A1 /* CubieTileButton.swift in Sources */,
+				00771C5F2B5BCD7A009D20A1 /* CubieTile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
