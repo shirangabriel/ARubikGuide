@@ -17,6 +17,7 @@
 		00771C672B5BE124009D20A1 /* RubiksCubeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00771C662B5BE124009D20A1 /* RubiksCubeData.swift */; };
 		00771C692B5C41C9009D20A1 /* GridStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00771C682B5C41C9009D20A1 /* GridStack.swift */; };
 		00E366A92B5D8ED2009ACAC9 /* ColorMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E366A82B5D8ED2009ACAC9 /* ColorMapping.swift */; };
+		00E366AB2B5EDCB8009ACAC9 /* RubikFacesGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E366AA2B5EDCB8009ACAC9 /* RubikFacesGrid.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		00771C662B5BE124009D20A1 /* RubiksCubeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubiksCubeData.swift; sourceTree = "<group>"; };
 		00771C682B5C41C9009D20A1 /* GridStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridStack.swift; sourceTree = "<group>"; };
 		00E366A82B5D8ED2009ACAC9 /* ColorMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorMapping.swift; sourceTree = "<group>"; };
+		00E366AA2B5EDCB8009ACAC9 /* RubikFacesGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubikFacesGrid.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				00771C512B5BB3ED009D20A1 /* ContentView.swift */,
+				00E366AA2B5EDCB8009ACAC9 /* RubikFacesGrid.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E366A92B5D8ED2009ACAC9 /* ColorMapping.swift in Sources */,
+				00E366AB2B5EDCB8009ACAC9 /* RubikFacesGrid.swift in Sources */,
 				00771C522B5BB3ED009D20A1 /* ContentView.swift in Sources */,
 				00771C672B5BE124009D20A1 /* RubiksCubeData.swift in Sources */,
 				00771C622B5BCF7F009D20A1 /* CubeSide.swift in Sources */,
