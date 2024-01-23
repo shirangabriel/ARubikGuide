@@ -8,12 +8,23 @@
 import SwiftUI
 
 struct RubikFacesGrid: View {
+    
+    let onCubeFacePress: (Int) -> () // Declare the callback parameter
+    
+    init(onCubeFacePress: @escaping (Int) -> Void) {
+           self.onCubeFacePress = onCubeFacePress
+    }
+    
+    
     var body: some View {
+        
         let firstHalf = rubiksCube.prefix(3)
         let secondHalf = rubiksCube.dropFirst(3)
         
         let indicesFirstHalf = Array(0..<firstHalf.count)
         let indicesSecondHalf = Array(0..<secondHalf.count)
+        
+    
         
         
         HStack{
@@ -23,7 +34,8 @@ struct RubikFacesGrid: View {
                         // Access the index here
                         print("index: \(index), cube: \(rubiksCube[index])")
                         
-//                       handleOnCubeFacePressed(index: index)
+                        onCubeFacePress(index)
+
                         
                     }) {
                         CubeSide(colors: cube)
@@ -38,9 +50,7 @@ struct RubikFacesGrid: View {
                     Button(action: {
                         // Access the index here
                         print("index: \(firstHalf.count + index), cube: \(rubiksCube[firstHalf.count + index])")
-//                        handleOnCubeFacePressed(index: firstHalf.count + index)
-                        
-                        
+                        onCubeFacePress(firstHalf.count + index)
                     }) {
                         CubeSide(colors: cube)
                             .padding(2)
@@ -53,5 +63,5 @@ struct RubikFacesGrid: View {
 }
 
 #Preview {
-    RubikFacesGrid()
+    RubikFacesGrid(onCubeFacePress: { _ in })
 }

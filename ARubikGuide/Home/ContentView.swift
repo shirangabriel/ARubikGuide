@@ -15,6 +15,8 @@ struct ContentView: View {
     @State private var path = NavigationPath()
     
     func handleOnCubeFacePressed(index: Int){
+        print("onPress")
+        
         self.selectedCubeFaceIndex = index
         
         
@@ -34,7 +36,7 @@ struct ContentView: View {
                 .multilineTextAlignment(.leading)
             
             
-            RubikFacesGrid()
+        RubikFacesGrid(onCubeFacePress: handleOnCubeFacePressed)
 
     }
 }
