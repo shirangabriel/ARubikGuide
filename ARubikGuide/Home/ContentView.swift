@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+        VStack {
             Spacer()
             Text("Lets match the cube")
                 .font(.title)
@@ -16,9 +17,9 @@ struct ContentView: View {
                 .frame(alignment: .topLeading)
                 .foregroundColor(.blue)
                 .multilineTextAlignment(.leading)
-        
-
+            
             RubikFacesGrid()
+        }
     }
 }
 
