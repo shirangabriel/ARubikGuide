@@ -38,7 +38,6 @@ struct ColorMapping: View {
                                 .onTapGesture {
                                     self.selectedRowIndex = rowIndex
                                     self.selectedSticker = index
-                                    print("Tapped \(self.selectedSticker) ")
                                 }
                         }
                     }.shadow(radius: 2)
@@ -48,7 +47,19 @@ struct ColorMapping: View {
             HStack {
                 ForEach(applicableColors, id: \.self) { color in
                     Button(action: {
-                        stickers[self.selectedRowIndex][self.selectedSticker] = color
+                       
+                        if(!(self.selectedRowIndex == 1 && self.selectedSticker == 1)){
+                             stickers[self.selectedRowIndex][self.selectedSticker] = color
+                        }
+                        
+                        if(self.selectedSticker < 2){
+                            self.selectedSticker = self.selectedSticker + 1
+                        }else if(self.selectedRowIndex < 2){
+                            self.selectedRowIndex = self.selectedRowIndex + 1
+                            self.selectedSticker = 0
+                        }
+                        
+                        
                     }, label: {
                         Circle()
                             .stroke(.black, lineWidth: 1)
