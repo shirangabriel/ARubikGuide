@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var cubeData:[[[Color]]] = rubiksCube
     var body: some View {
         VStack {
             Spacer()
@@ -18,7 +19,7 @@ struct ContentView: View {
                 .foregroundColor(.blue)
                 .multilineTextAlignment(.leading)
             
-            RubikFacesGrid()
+            RubikFacesGrid(rubikData: $cubeData)
         }
     }
 }

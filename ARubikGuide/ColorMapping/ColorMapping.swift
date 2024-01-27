@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ColorMapping: View {
-    @State var stickers:[[Color]] = []
+    @Binding var rubikData: [[[Color]]]
+    
     @State var selectedRowIndex: Int = 0
     @State var selectedSticker: Int = 0
     var cubeIndex: Int = 0
@@ -16,17 +17,16 @@ struct ColorMapping: View {
     let applicableColors = [Color.red, Color.green, Color.white, Color.yellow, Color.orange, Color.blue]
     
     
-    init(cubeIndex: Int) {
+    init(cubeIndex: Int, rubikData: Binding<[[[Color]]]>) {
         self.cubeIndex = cubeIndex
-        self._stickers = State(initialValue: rubiksCube[cubeIndex])
+        self._rubikData = rubikData
     }
     
     
     var body: some View {
-        
         VStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, content: {
             VStack {
-                ForEach(Array(stickers.enumerated()), id: \.offset) { rowIndex, row in
+                ForEach(Array(rubikData[cubeIndex].enumerated()), id: \.offset) { rowIndex, row in
                     HStack{
                         ForEach(Array(row.enumerated()), id: \.offset) { index, color in
                             Rectangle()
@@ -41,15 +41,15 @@ struct ColorMapping: View {
                                 }
                         }
                     }.shadow(radius: 2)
-                    
                 }
             }.padding(5)
             HStack {
                 ForEach(applicableColors, id: \.self) { color in
                     Button(action: {
                        
+                        // Check if center piece
                         if(!(self.selectedRowIndex == 1 && self.selectedSticker == 1)){
-                             stickers[self.selectedRowIndex][self.selectedSticker] = color
+                            rubikData[cubeIndex][self.selectedRowIndex][self.selectedSticker] = color
                         }
                         
                         if(self.selectedSticker < 2){
@@ -76,6 +76,10 @@ struct ColorMapping: View {
     }
 }
 
-#Preview {
-    ColorMapping(cubeIndex: 0)
+struct ColorMapping_Previews: PreviewProvider {
+    @State static var rubikData: [[[Color]]] = rubiksCube
+
+    static var previews: some View {
+        ColorMapping(cubeIndex: 0, rubikData: $rubikData)
+    }
 }
