@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		003DCF692B651DE0001A30DE /* CubeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003DCF682B651DE0001A30DE /* CubeView.swift */; };
 		00771C502B5BB3ED009D20A1 /* ARubikGuideApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00771C4F2B5BB3ED009D20A1 /* ARubikGuideApp.swift */; };
 		00771C522B5BB3ED009D20A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00771C512B5BB3ED009D20A1 /* ContentView.swift */; };
 		00771C542B5BB3F0009D20A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00771C532B5BB3F0009D20A1 /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		003DCF682B651DE0001A30DE /* CubeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeView.swift; sourceTree = "<group>"; };
 		00771C4C2B5BB3ED009D20A1 /* ARubikGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARubikGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00771C4F2B5BB3ED009D20A1 /* ARubikGuideApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARubikGuideApp.swift; sourceTree = "<group>"; };
 		00771C512B5BB3ED009D20A1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -46,9 +48,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		003DCF672B651DC9001A30DE /* CubeView */ = {
+			isa = PBXGroup;
+			children = (
+				003DCF682B651DE0001A30DE /* CubeView.swift */,
+			);
+			path = CubeView;
+			sourceTree = "<group>";
+		};
 		00771C432B5BB3EC009D20A1 = {
 			isa = PBXGroup;
 			children = (
+				003DCF672B651DC9001A30DE /* CubeView */,
 				00771C4E2B5BB3ED009D20A1 /* ARubikGuide */,
 				00771C4D2B5BB3ED009D20A1 /* Products */,
 			);
@@ -193,6 +204,7 @@
 				00E366A92B5D8ED2009ACAC9 /* ColorMapping.swift in Sources */,
 				00E366AB2B5EDCB8009ACAC9 /* RubikFacesGrid.swift in Sources */,
 				00771C522B5BB3ED009D20A1 /* ContentView.swift in Sources */,
+				003DCF692B651DE0001A30DE /* CubeView.swift in Sources */,
 				00771C672B5BE124009D20A1 /* RubiksCubeData.swift in Sources */,
 				00771C622B5BCF7F009D20A1 /* CubeSide.swift in Sources */,
 				00771C502B5BB3ED009D20A1 /* ARubikGuideApp.swift in Sources */,
