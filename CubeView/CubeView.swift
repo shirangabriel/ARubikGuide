@@ -64,25 +64,21 @@ func cube(color: UIColor, x: Float, y: Float, z: Float) ->SCNNode {
 
 
 private func centerPiece(x: Float, y: Float, z: Float) -> SCNMaterial {
-    if(x == -1 && y == 0 && z == 0){
-       return coloredMaterial(with: .orange, atIndex: 4) // Left
-    }
-    if(x == 0 && y == 1 && z == 0){
-       return coloredMaterial(with: .yellow, atIndex: 5) // Top
-    }
+    let key = "\(Int(x))\(Int(y))\(Int(z))"
+ 
+    let materials: [String: (UIColor, Int)] = [
+        "001": (.green, 1), // front
+        "100": (.red, 2), // right
+        "00-1": (.blue, 3), // back
+        "-100": (.orange, 4), // left
+        "010": (.yellow, 5), // top
+        "0-10": (.white, 6), // bottom
+    ]
+     
+     
     
-    if(x == 1 && y == 0 && z == 0) {
-       return coloredMaterial(with: .red, atIndex: 2) // right
-    }
-    
-    if(x == 0 && y == -1 && z == 0) {
-       return  coloredMaterial(with: .white, atIndex: 6) // bottom
-    }
-    if(x == 0 && y == 0 && z == -1 ) {
-       return coloredMaterial(with: .blue, atIndex: 3) // back
-    }
-    if( x == 0 && y == 0 && z == 1) {
-       return coloredMaterial(with: .green, atIndex: 1) // front
+    if let material = materials[key] {
+           return coloredMaterial(with: material.0, atIndex: material.1)
     }
     
     return coloredMaterial(with: .white, atIndex: 0)
