@@ -23,23 +23,41 @@ struct CubeView: View {
     
     func createScene() -> SCNScene {
         let scene = SCNScene()
-        let containerNode = SCNNode()
+        let containerNode1 = SCNNode()
+        let containerNode2 = SCNNode()
         
         for i in -1...1 {
             for j in -1...1 {
                 for k in -1...1 {
                     let cube = cube(color: .white, x: CFloat(i), y: CFloat(j), z: CFloat(k))
-                    containerNode.addChildNode(cube)
+                    
+                    let key = "\(Int(i))\(Int(j))\(Int(k))"
+                    
+                    if(key == "001" || key == "-111" || key == "-1-11" || key == "111" || key == "1-11" || key == "011" || key ==  "-101" || key ==  "101" || key == "0-11" ){
+                        containerNode1.addChildNode(cube)
+                    }else {
+                        containerNode2.addChildNode(cube)
+                    }
+                        
+                    
+                   
+                    
                 }
             }
         }
         
-        containerNode.eulerAngles = SCNVector3(GLKMathDegreesToRadians(40), GLKMathDegreesToRadians(0), 0)
+//        containerNode1.eulerAngles = SCNVector3(GLKMathDegreesToRadians(40), GLKMathDegreesToRadians(0), 0)
+//        containerNode2.eulerAngles = SCNVector3(GLKMathDegreesToRadians(40), GLKMathDegreesToRadians(0), 0)
+        
+        // Apply the rotation to the container node
+        let rotationAction = SCNAction.rotateBy(x: 0, y: 0, z: .pi * 0.5, duration: 10)
+        containerNode1.runAction(rotationAction)
         
         let cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
         cameraNode.position = SCNVector3(x: 0, y: 0, z: 10)
-        scene.rootNode.addChildNode(containerNode)
+        scene.rootNode.addChildNode(containerNode1)
+        scene.rootNode.addChildNode(containerNode2)
         scene.rootNode.addChildNode(cameraNode)
         return scene
         
@@ -68,8 +86,22 @@ private func getPiecesForCoordinates(x: Float, y: Float, z: Float) -> [SCNMateri
     
     switch key {
         
+        //"-111" || "-1-11" || "111" || "1-11" || "011" || "-101" || "101" || "0-11"
+        
         // Center Pieces
         case "001": return face(front: UIColor.green)
+        // Corner Pieces
+        case "-111": return face(front: .green, left: .orange, top: .yellow)
+        case "-1-11": return face(front: .green, left: .orange, bottom: .white)
+        case "111": return face(front: .green, right: .red, top: .yellow)
+        case "1-11": return face(front: .green, right: .red, bottom: .white)
+        
+        // Edge Pieces
+        case "011": return face(front: UIColor.green, top: .yellow)
+        case "-101": return face(front: UIColor.green, left: .orange)
+        case "101": return face(front: UIColor.green, right: .red)
+        case "0-11": return face(front: UIColor.green, bottom: .white)
+        
         case "100": return face(right: .red)
         case "00-1": return face(back: .blue)
         case "-100": return face(left: .orange)
@@ -78,24 +110,15 @@ private func getPiecesForCoordinates(x: Float, y: Float, z: Float) -> [SCNMateri
         
         
         // Corner Pieces
-        case "-111": return face(front: .green, left: .orange, top: .yellow)
         case "-11-1": return face( back: .blue, left: .orange, top: .yellow)
         case "-1-1-1": return face( back: .blue, left: .orange, bottom: .white)
         
-        case "-1-11": return face(front: .green, left: .orange, bottom: .white)
-        
-        case "111": return face(front: .green, right: .red, top: .yellow)
-        case "1-11": return face(front: .green, right: .red, bottom: .white)
-        
+    
         case "11-1": return face(right: .red, back: .blue, top: .yellow)
         case "1-1-1": return face(right: .red, back: .blue, bottom: .white)
         
         // Middle Pieces
-        // Front (green)
-        case "011": return face(front: UIColor.green, top: .yellow)
-        case "-101": return face(front: UIColor.green, left: .orange)
-        case "101": return face(front: UIColor.green, right: .red)
-        case "0-11": return face(front: UIColor.green, bottom: .white)
+
         
         // Right (red)
         case "110": return face(right: .red, top: .yellow)
