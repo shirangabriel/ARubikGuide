@@ -11,12 +11,26 @@ import SceneKit
 struct CubeView: View {
     @State private var angle: Double = 0
     @GestureState private var dragAmount = CGSize.zero
+
     
     var body: some View {
-        GeometryReader { geometry in
-            SceneKitView(scene: createScene(), size: geometry.size)
-                .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+        
+        VStack {
+            
+            Text("Let's Solve the Cube")
+                .font(.title)
+                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+            
+            
+            GeometryReader { geometry in
+                SceneKitView(scene: createScene(), size: geometry.size)
+                    .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+            }
+
         }
+        
+        
+    
         
         
     }
@@ -48,9 +62,9 @@ struct CubeView: View {
         
 //        containerNode1.eulerAngles = SCNVector3(GLKMathDegreesToRadians(40), GLKMathDegreesToRadians(0), 0)
 //        containerNode2.eulerAngles = SCNVector3(GLKMathDegreesToRadians(40), GLKMathDegreesToRadians(0), 0)
-        
+//        
         // Apply the rotation to the container node
-        let rotationAction = SCNAction.rotateBy(x: 0, y: 0, z: .pi * 0.5, duration: 10)
+        let rotationAction = SCNAction.rotateBy(x: 0, y: 0, z: .pi * 2, duration: 4)
         containerNode1.runAction(rotationAction)
         
         let cameraNode = SCNNode()
@@ -141,7 +155,7 @@ private func getPiecesForCoordinates(x: Float, y: Float, z: Float) -> [SCNMateri
 
 private func face(front: UIColor? = nil, right: UIColor? = nil, back: UIColor? = nil, left: UIColor? = nil, top: UIColor? = nil, bottom: UIColor? = nil) -> [SCNMaterial] {
     
-    let defaultColor = UIColor.white
+    let defaultColor = UIColor.black
     
     let materials: [SCNMaterial] = [
         coloredMaterial(with: (front != nil) ? front! : defaultColor), // front
