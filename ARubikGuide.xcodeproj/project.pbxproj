@@ -59,7 +59,6 @@
 		00771C432B5BB3EC009D20A1 = {
 			isa = PBXGroup;
 			children = (
-				003DCF672B651DC9001A30DE /* CubeView */,
 				00771C4E2B5BB3ED009D20A1 /* ARubikGuide */,
 				00771C4D2B5BB3ED009D20A1 /* Products */,
 			);
@@ -76,6 +75,7 @@
 		00771C4E2B5BB3ED009D20A1 /* ARubikGuide */ = {
 			isa = PBXGroup;
 			children = (
+				003DCF672B651DC9001A30DE /* CubeView */,
 				00E366A72B5D8EB8009ACAC9 /* ColorMapping */,
 				00771C652B5BE117009D20A1 /* Data */,
 				00771C4F2B5BB3ED009D20A1 /* ARubikGuideApp.swift */,

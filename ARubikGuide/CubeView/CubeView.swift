@@ -26,6 +26,12 @@ struct CubeView: View {
                 SceneKitView(scene: createScene(), size: geometry.size)
                     .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
             }
+            
+            Button(action: {
+                // Rotate
+            }, label: {
+                /*@START_MENU_TOKEN@*/Text("Button")/*@END_MENU_TOKEN@*/
+            })
 
         }
         
@@ -37,25 +43,14 @@ struct CubeView: View {
     
     func createScene() -> SCNScene {
         let scene = SCNScene()
-        let containerNode1 = SCNNode()
-        let containerNode2 = SCNNode()
+        let containerNode = SCNNode()
+        containerNode.name = "containerNode"
         
         for i in -1...1 {
             for j in -1...1 {
                 for k in -1...1 {
                     let cube = cube(color: .white, x: CFloat(i), y: CFloat(j), z: CFloat(k))
-                    
-                    let key = "\(Int(i))\(Int(j))\(Int(k))"
-                    
-                    if(key == "001" || key == "-111" || key == "-1-11" || key == "111" || key == "1-11" || key == "011" || key ==  "-101" || key ==  "101" || key == "0-11" ){
-                        containerNode1.addChildNode(cube)
-                    }else {
-                        containerNode2.addChildNode(cube)
-                    }
-                        
-                    
-                   
-                    
+                    containerNode.addChildNode(cube)
                 }
             }
         }
@@ -64,19 +59,35 @@ struct CubeView: View {
 //        containerNode2.eulerAngles = SCNVector3(GLKMathDegreesToRadians(40), GLKMathDegreesToRadians(0), 0)
 //        
         // Apply the rotation to the container node
-        let rotationAction = SCNAction.rotateBy(x: 0, y: 0, z: .pi * 2, duration: 4)
-        containerNode1.runAction(rotationAction)
+//        let rotationAction = SCNAction.rotateBy(x: 0, y: 0, z: .pi * 2, duration: 4)
+//        containerNode1.runAction(rotationAction)
+        
+//        rotateSelectedCubes(containerNode: containerNode)
         
         let cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
         cameraNode.position = SCNVector3(x: 0, y: 0, z: 10)
-        scene.rootNode.addChildNode(containerNode1)
-        scene.rootNode.addChildNode(containerNode2)
+        scene.rootNode.addChildNode(containerNode)
         scene.rootNode.addChildNode(cameraNode)
         return scene
         
     }
 }
+
+func rotateSelectedCubes(containerNode: SCNNode) {
+    for node in containerNode.childNodes {
+        let x = Int(node.position.x)
+        let y = Int(node.position.y)
+        let z = Int(node.position.z)
+        let key = "\(x)\(y)\(z)"
+        
+        if ["-111", "-1-11", "111", "1-11", "011", "-101", "101", "0-11"].contains(key) {
+            let rotationAction = SCNAction.rotateBy(x: 0, y: 0, z: .pi * 2, duration: 4)
+            node.runAction(rotationAction)
+        }
+    }
+}
+
 
 
 func cube(color: UIColor, x: Float, y: Float, z: Float) ->SCNNode {
