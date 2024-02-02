@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00211C5E2B6D48BA00E6D451 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00211C5D2B6D48BA00E6D451 /* Cube.swift */; };
 		003DCF692B651DE0001A30DE /* CubeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003DCF682B651DE0001A30DE /* CubeView.swift */; };
 		00771C502B5BB3ED009D20A1 /* ARubikGuideApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00771C4F2B5BB3ED009D20A1 /* ARubikGuideApp.swift */; };
 		00771C522B5BB3ED009D20A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00771C512B5BB3ED009D20A1 /* ContentView.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00211C5D2B6D48BA00E6D451 /* Cube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 		003DCF682B651DE0001A30DE /* CubeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeView.swift; sourceTree = "<group>"; };
 		00771C4C2B5BB3ED009D20A1 /* ARubikGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARubikGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00771C4F2B5BB3ED009D20A1 /* ARubikGuideApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARubikGuideApp.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 		00771C4E2B5BB3ED009D20A1 /* ARubikGuide */ = {
 			isa = PBXGroup;
 			children = (
+				00211C5D2B6D48BA00E6D451 /* Cube.swift */,
 				003DCF672B651DC9001A30DE /* CubeView */,
 				00E366A72B5D8EB8009ACAC9 /* ColorMapping */,
 				00771C652B5BE117009D20A1 /* Data */,
@@ -202,6 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E366A92B5D8ED2009ACAC9 /* ColorMapping.swift in Sources */,
+				00211C5E2B6D48BA00E6D451 /* Cube.swift in Sources */,
 				00E366AB2B5EDCB8009ACAC9 /* RubikFacesGrid.swift in Sources */,
 				00771C522B5BB3ED009D20A1 /* ContentView.swift in Sources */,
 				003DCF692B651DE0001A30DE /* CubeView.swift in Sources */,
