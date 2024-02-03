@@ -51,47 +51,51 @@ struct Cube {
             // Center Pieces
         case "001": return face(front: UIColor.green)
             // Corner Pieces
-        case "-111": return face(front: .green, left: .orange, top: .yellow)
-        case "-1-11": return face(front: .green, left: .orange, bottom: .white)
-        case "111": return face(front: .green, right: .red, top: .yellow)
-        case "1-11": return face(front: .green, right: .red, bottom: .white)
+        case "-111": return face(front: .green, left: .orange, up: .yellow)
+        case "-1-11": return face(front: .green, left: .orange, down: .white)
+        case "111": return face(front: .green, right: .red, up: .yellow)
+        case "1-11": return face(front: .green, right: .red, down: .white)
             
             // Edge Pieces
-        case "011": return face(front: UIColor.green, top: .yellow)
+        case "011": return face(front: UIColor.green, up: .yellow)
         case "-101": return face(front: UIColor.green, left: .orange)
         case "101": return face(front: UIColor.green, right: .red)
-        case "0-11": return face(front: UIColor.green, bottom: .white)
+        case "0-11": return face(front: UIColor.green, down: .white)
             
         case "100": return face(right: .red)
         case "00-1": return face(back: .blue)
         case "-100": return face(left: .orange)
-        case "010": return face(top: .yellow)
-        case "0-10": return face(bottom: .white)
+        case "010": return face(up: .yellow)
+        case "0-10": return face(down: .white)
             
             
             // Corner Pieces
-        case "-11-1": return face( back: .blue, left: .orange, top: .yellow)
-        case "-1-1-1": return face( back: .blue, left: .orange, bottom: .white)
+        case "-11-1": return face( back: .blue, left: .orange, up: .yellow)
+        case "-1-1-1": return face( back: .blue, left: .orange, down: .white)
             
             
-        case "11-1": return face(right: .red, back: .blue, top: .yellow)
-        case "1-1-1": return face(right: .red, back: .blue, bottom: .white)
+        case "11-1": return face(right: .red, back: .blue, up: .yellow)
+        case "1-1-1": return face(right: .red, back: .blue, down: .white)
             
             // Middle Pieces
             
             
             // Right (red)
-        case "110": return face(right: .red, top: .yellow)
-        case "1-10": return face(right: .red, bottom: .white)
+        case "110": return face(right: .red, up: .yellow)
+        case "1-10": return face(right: .red, down: .white)
         case "10-1": return face(right: .red, back: .blue)
             
             
-        case "-110": return face(left: .orange, top: .yellow)
-        case "-10-1": return face(back: .blue, left: .orange)
-        case "-1-10": return face(left: .orange, bottom: .white)
             
-        case "0-1-1": return face(back: .blue, bottom: .white)
-        case "01-1": return face(back: .blue, top: .yellow)
+        // left  (orange)
+        case "-110": return face(left: .orange, up: .yellow)
+        case "-10-1": return face(back: .blue, left: .orange)
+        case "-1-10": return face(left: .orange, down: .white)
+            
+            
+            
+        case "0-1-1": return face(back: .blue, down: .white)
+        case "01-1": return face(back: .blue, up: .yellow)
             
         default: return [coloredMaterial(with: .white)]
         }
@@ -99,7 +103,7 @@ struct Cube {
     }
     
     
-    private func face(front: UIColor? = nil, right: UIColor? = nil, back: UIColor? = nil, left: UIColor? = nil, top: UIColor? = nil, bottom: UIColor? = nil) -> [SCNMaterial] {
+    private func face(front: UIColor? = nil, right: UIColor? = nil, back: UIColor? = nil, left: UIColor? = nil, up: UIColor? = nil, down: UIColor? = nil) -> [SCNMaterial] {
         
         let defaultColor = UIColor.black
         
@@ -108,8 +112,8 @@ struct Cube {
             coloredMaterial(with: (right != nil) ? right! : defaultColor), // right
             coloredMaterial(with: (back != nil) ? back! : defaultColor), // back
             coloredMaterial(with: (left != nil) ? left! : defaultColor), // left
-            coloredMaterial(with: (top != nil) ? top! : defaultColor), // top
-            coloredMaterial(with: (bottom != nil) ? bottom! : defaultColor), // bottom
+            coloredMaterial(with: (up != nil) ? up! : defaultColor), // up
+            coloredMaterial(with: (down != nil) ? down! : defaultColor), // down
             
         ]
         
