@@ -46,18 +46,19 @@ struct Cube {
         
         switch key {
             
-            //"-111" || "-1-11" || "111" || "1-11" || "011" || "-101" || "101" || "0-11"
+            
+            
             
             // Center Pieces
         case "001": return face(front: UIColor.green)
             // Corner Pieces
-        case "-111": return face(front: .green, left: .orange, up: .yellow)
+        case "-111": return face( up: .yellow, front: .green, left: .orange)
         case "-1-11": return face(front: .green, left: .orange, down: .white)
-        case "111": return face(front: .green, right: .red, up: .yellow)
+        case "111": return face( up: .yellow, front: .green, right: .red)
         case "1-11": return face(front: .green, right: .red, down: .white)
             
             // Edge Pieces
-        case "011": return face(front: UIColor.green, up: .yellow)
+        case "011": return face(up: .yellow, front: UIColor.green )
         case "-101": return face(front: UIColor.green, left: .orange)
         case "101": return face(front: UIColor.green, right: .red)
         case "0-11": return face(front: UIColor.green, down: .white)
@@ -70,32 +71,32 @@ struct Cube {
             
             
             // Corner Pieces
-        case "-11-1": return face( back: .blue, left: .orange, up: .yellow)
+        case "-11-1": return face( up: .yellow, back: .blue, left: .orange)
         case "-1-1-1": return face( back: .blue, left: .orange, down: .white)
             
             
-        case "11-1": return face(right: .red, back: .blue, up: .yellow)
+        case "11-1": return face(up: .yellow, right: .red, back: .blue)
         case "1-1-1": return face(right: .red, back: .blue, down: .white)
             
             // Middle Pieces
             
             
             // Right (red)
-        case "110": return face(right: .red, up: .yellow)
+        case "110": return face(up: .yellow, right: .red)
         case "1-10": return face(right: .red, down: .white)
         case "10-1": return face(right: .red, back: .blue)
             
             
             
         // left  (orange)
-        case "-110": return face(left: .orange, up: .yellow)
+        case "-110": return face( up: .yellow, left: .orange)
         case "-10-1": return face(back: .blue, left: .orange)
         case "-1-10": return face(left: .orange, down: .white)
             
             
             
         case "0-1-1": return face(back: .blue, down: .white)
-        case "01-1": return face(back: .blue, up: .yellow)
+        case "01-1": return face( up: .yellow, back: .blue)
             
         default: return [coloredMaterial(with: .white)]
         }
@@ -103,18 +104,17 @@ struct Cube {
     }
     
     
-    private func face(front: UIColor? = nil, right: UIColor? = nil, back: UIColor? = nil, left: UIColor? = nil, up: UIColor? = nil, down: UIColor? = nil) -> [SCNMaterial] {
+    private func face( up: UIColor? = nil, front: UIColor? = nil, right: UIColor? = nil, back: UIColor? = nil, left: UIColor? = nil, down: UIColor? = nil) -> [SCNMaterial] {
         
         let defaultColor = UIColor.black
         
         let materials: [SCNMaterial] = [
+            coloredMaterial(with: (up != nil) ? up! : defaultColor), // up
             coloredMaterial(with: (front != nil) ? front! : defaultColor), // front
             coloredMaterial(with: (right != nil) ? right! : defaultColor), // right
             coloredMaterial(with: (back != nil) ? back! : defaultColor), // back
             coloredMaterial(with: (left != nil) ? left! : defaultColor), // left
-            coloredMaterial(with: (up != nil) ? up! : defaultColor), // up
             coloredMaterial(with: (down != nil) ? down! : defaultColor), // down
-            
         ]
         
         return materials
