@@ -11,9 +11,11 @@ import SceneKit
 struct CubeView: View {
     @State private var angle: Double = 0
     @GestureState private var dragAmount = CGSize.zero
-
+    
+    
     
     var body: some View {
+        var mScene: SCNScene = createScene();
         
         VStack {
             
@@ -23,71 +25,74 @@ struct CubeView: View {
             
             
             GeometryReader { geometry in
-                SceneKitView(scene: createScene(), size: geometry.size)
+                SceneKitView(scene: mScene, size: geometry.size)
                     .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
             }
             
             Button(action: {
                 // Rotate
+                rotateFace(scene: mScene)
+                
             }, label: {
-                /*@START_MENU_TOKEN@*/Text("Button")/*@END_MENU_TOKEN@*/
+                Text(":Button")
             })
-
+            
         }
         
     }
     
     func createScene() -> SCNScene {
         let scene = SCNScene()
-        let containerNode = SCNNode()
-        containerNode.name = "containerNode"
-        
         for i in -1...1 {
             for j in -1...1 {
                 for k in -1...1 {
-                    let cube = Cube.init(color: .white, x: CFloat(i), y: CFloat(j), z: CFloat(k)).getCubeSCN()
-                    containerNode.addChildNode(cube)
+                    let cube = Cube.init(color: .white, x: CFloat(i), y: CFloat(j), z: CFloat(k))
+                        .getCubeSCN()
+                    
+                    let key = "\(Int(i))\(Int(j))\(Int(k))"
+                    
+                    let container = SCNNode()
+                    container.name = key
+                    container.addChildNode(cube)
+                    scene.rootNode.addChildNode(container)
                 }
             }
         }
         
-//        containerNode1.eulerAngles = SCNVector3(GLKMathDegreesToRadians(40), GLKMathDegreesToRadians(0), 0)
-//        containerNode2.eulerAngles = SCNVector3(GLKMathDegreesToRadians(40), GLKMathDegreesToRadians(0), 0)
-//        
-        // Apply the rotation to the container node
-//        let rotationAction = SCNAction.rotateBy(x: 0, y: 0, z: .pi * 2, duration: 4)
-//        containerNode1.runAction(rotationAction)
-        
-//        rotateSelectedCubes(containerNode: containerNode)
-        
         let cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
         cameraNode.position = SCNVector3(x: 0, y: 0, z: 10)
-        scene.rootNode.addChildNode(containerNode)
         scene.rootNode.addChildNode(cameraNode)
         return scene
         
     }
 }
 
-func rotateSelectedCubes(containerNode: SCNNode) {
-    
-    for node in containerNode.childNodes {
-        let x = Int(node.position.x)
-        let y = Int(node.position.y)
-        let z = Int(node.position.z)
-        let key = "\(x)\(y)\(z)"
-        
-        
-        
-        
-        if ["-111", "-1-11", "111", "1-11", "011", "-101", "101", "0-11"].contains(key) {
-            let rotationAction = SCNAction.rotateBy(x: 0, y: 0, z: .pi * 2, duration: 4)
-            node.runAction(rotationAction)
+
+func rotateFace(scene: SCNScene) -> Void {
+    for container in scene.rootNode.childNodes {
+        if ["-111", "-1-11", "-101", "-100", "-11-1", "-1-1-1", "-110", "-10-1", "-1-10"].contains(container.name){ // first container
+            let rotationAction = SCNAction.rotateBy(x: .pi * 0.5, y: 0, z: 0, duration: 4)
+            container.runAction(rotationAction)
+        }
+
+
+        let waitAction = SCNAction.wait(duration: 6)
+        let rotationAction = SCNAction.rotateBy(x: 0, y: 0, z: .pi * 0.5, duration: 4)
+        let sequenceAction = SCNAction.sequence([waitAction, rotationAction]) // Create a sequence of actions
+
+
+        if ["-11-1", "-110", "001", "-111", "111", "1-11", "011", "101", "0-11"].contains(container.name){ // second container
+            container.runAction(sequenceAction)
         }
     }
+            
 }
 
+func rotateFaceRight(face: SCNNode) -> Void {
+    let rotationAction = SCNAction.rotateBy(x: 0, y: 0, z: .pi * 2, duration: 4)
+    face.runAction(rotationAction)
+}
 
 struct SceneKitView: UIViewRepresentable {
     let scene: SCNScene
@@ -98,7 +103,7 @@ struct SceneKitView: UIViewRepresentable {
         view.scene = scene
         view.autoenablesDefaultLighting = true
         view.allowsCameraControl = true
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.gray
         return view
     }
     
