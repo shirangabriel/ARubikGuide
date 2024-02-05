@@ -37,6 +37,39 @@ struct Cube {
         node.position = SCNVector3(x:Float(self.x), y: Float(self.y), z: Float(self.z))
         
         
+        
+        let faces = ["F", "B", "L", "R", "U", "D"]
+        for(index, face) in faces.enumerated(){
+            let text = SCNText(string: face, extrusionDepth: 0.1)
+            text.firstMaterial?.diffuse.contents = UIColor.black
+
+            let textNode = SCNNode(geometry: text)
+            textNode.scale = SCNVector3(0.02, 0.02, 0.02) // adjust the scale to fit the text on the cube
+            
+            
+            switch index {
+            case 0: // Front
+                textNode.position = SCNVector3(0, 0, 0.5)
+            case 1: // Back
+                textNode.position = SCNVector3(0, 0, -0.5)
+            case 2: // Left
+                textNode.position = SCNVector3(-0.5, 0, 0)
+            case 3: // Right
+                textNode.position = SCNVector3(0.5, 0, 0)
+            case 4: // Top
+                textNode.position = SCNVector3(0, 0.5, 0)
+            case 5: // Bottom
+                textNode.position = SCNVector3(0, -0.5, 0)
+            default:
+                break
+                
+            }
+            
+            node.addChildNode(textNode)
+            
+        }
+        
+        
         return node
     }
     
