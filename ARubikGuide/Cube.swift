@@ -35,10 +35,20 @@ struct Cube {
         
         let node = SCNNode(geometry: box)
         node.position = SCNVector3(x:Float(self.x), y: Float(self.y), z: Float(self.z))
+    
         
         
+        nameFacesForReference(node: node)
         
+        
+        return node
+    }
+    
+    
+    private func nameFacesForReference(node: SCNNode) -> Void {
         let faces = ["F", "B", "L", "R", "U", "D"]
+        
+        
         for(index, face) in faces.enumerated(){
             let text = SCNText(string: face, extrusionDepth: 0.1)
             text.firstMaterial?.diffuse.contents = UIColor.black
@@ -68,9 +78,6 @@ struct Cube {
             node.addChildNode(textNode)
             
         }
-        
-        
-        return node
     }
     
     
@@ -143,9 +150,4 @@ struct Cube {
         material.isDoubleSided = false // Make sure both sides of the face have the same color
         return material
     }
-    
-    
-    
-    
-    
 }
