@@ -38,7 +38,7 @@ struct Cube {
         
         
         
-        //        nameFacesForReference(node: node)
+                nameFacesForReference(node: node)
         
         
         return node

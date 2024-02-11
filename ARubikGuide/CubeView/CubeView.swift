@@ -96,18 +96,20 @@ func rotateFace(scene: SCNScene) -> Void {
     for container in scene.rootNode.childNodes {
         if ["UFL", "UF", "UFR", "FL", "F", "FR", "DFL", "DF", "DFR"].contains(container.name){ // first container
             //            let rotationAction = SCNAction.rotateBy(x: .pi * 0.5, y: 0, z: 0, duration: 1)
-            let rotationAction = SCNAction.rotateBy(x: 0, y: 0, z: .pi * 0.5, duration: 10)
+            let rotationAction = SCNAction.rotateBy(x: 0, y: 0, z: .pi * 0.5, duration: 1)
             container.runAction(rotationAction)
         }
         
         
-        let waitAction = SCNAction.wait(duration: 1)
-        let rotationAction = SCNAction.rotateBy(x: 0, y: 0, z: .pi * 0.5, duration: 1)
+        let waitAction = SCNAction.wait(duration: 2)
+        let rotationAction = SCNAction.rotateBy(x: .pi * 0.5, y: 0, z: 0, duration: 1)
         let sequenceAction = SCNAction.sequence([waitAction, rotationAction]) // Create a sequence of actions
         
-        
-        if ["-11-1", "-110", "001", "-111", "111", "1-11", "011", "101", "0-11"].contains(container.name){ // second container
+
+        if ["L"].contains(container.name){ // second container
             container.runAction(sequenceAction)
+//            "UF", "DBL", "DL", "UFL"
+            
         }
     }
     
@@ -181,7 +183,6 @@ public  func getPiecesNameForCoordinates(key: String) -> String {
         
     default: return ""
     }
-    
 }
 
 
