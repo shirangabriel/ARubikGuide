@@ -37,7 +37,7 @@ struct CubeView: View {
             
             Button(action: {
                 // Rotate
-                rotateFace(scene: scene)
+                rightTrigger(scene: scene)
                 
             }, label: {
                 Text("Rotate")
@@ -92,24 +92,22 @@ func createScene() -> SCNScene {
 }
 
 
-func rotateFace(scene: SCNScene) -> Void {
+func rightTrigger(scene: SCNScene) -> Void {
+    
+   
+    
     for container in scene.rootNode.childNodes {
-        if ["UFL", "UF", "UFR", "FL", "F", "FR", "DFL", "DF", "DFR"].contains(container.name){ // first container
-            //            let rotationAction = SCNAction.rotateBy(x: .pi * 0.5, y: 0, z: 0, duration: 1)
-            let rotationAction = SCNAction.rotateBy(x: 0, y: 0, z: .pi * 0.5, duration: 1)
+        if ["UFR", "UR", "UBR", "FR", "R", "BR", "DFR", "DR", "DBR"].contains(container.name){ // first container
+            let rotationAction = SCNAction.rotateBy(x: -(.pi * 0.5), y: 0, z: 0, duration: 1)
             container.runAction(rotationAction)
         }
         
-        
-        let waitAction = SCNAction.wait(duration: 2)
-        let rotationAction = SCNAction.rotateBy(x: .pi * 0.5, y: 0, z: 0, duration: 1)
-        let sequenceAction = SCNAction.sequence([waitAction, rotationAction]) // Create a sequence of actions
-        
 
-        if ["L"].contains(container.name){ // second container
+        if ["UBL", "UB", "UFR", "UL", "U", "FR", "UFL", "UF", "DFR"].contains(container.name){ // second container
+            let waitAction = SCNAction.wait(duration: 2)
+            let rotationAction = SCNAction.rotateBy(x: 0, y: -(.pi * 0.5), z: 0, duration: 1)
+            let sequenceAction = SCNAction.sequence([waitAction, rotationAction]) // Create a sequence of actions
             container.runAction(sequenceAction)
-//            "UF", "DBL", "DL", "UFL"
-            
         }
     }
     
@@ -176,8 +174,8 @@ public  func getPiecesNameForCoordinates(key: String) -> String {
     case "-1-10": return  "DL"
     case "0-1-1": return  "DB"
     case "1-10": return  "DR"
-    case "101": return  "FL"
-    case "-101": return  "FR"
+    case "101": return  "FR"
+    case "-101": return  "FL"
     case "10-1": return  "BR"
     case "-10-1": return  "BL"
         

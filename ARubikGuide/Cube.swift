@@ -113,8 +113,8 @@ struct Cube {
         case "-1-10": return face(left: .red, down: .white) // DL
         case "0-1-1": return face(back: .blue, down: .white) // DB
         case "1-10": return face(right: .orange, down: .white) // DR
-        case "101": return face(front: .green, right: .orange) // FL
-        case "-101": return face(front: .green, left: .red) // FR
+        case "101": return face(front: .green, right: .orange) // FR
+        case "-101": return face(front: .green, left: .red) // FL
             
         case "10-1": return face(right: .orange, back: .blue) // BR
         case "-10-1": return face(back: .blue, left: .red)  // BL
