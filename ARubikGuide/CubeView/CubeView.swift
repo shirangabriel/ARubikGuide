@@ -37,7 +37,14 @@ struct CubeView: View {
             
             Button(action: {
                 // Rotate
-                rightTrigger(scene: scene)
+                let rot = .pi * 0.5;
+                
+                //                "UFR", "UR", "UBR", "FR", "R", "BR", "DFR", "DR", "DBR"
+                //                "UBL", "UB", "UFR", "UL", "U", "FR", "UFL", "UF", "DFR"
+                //                "UFR", "UB", "UBL", "DR", "R", "UR", "DBR", "BR", "UBR"
+                
+                
+                rotate(scene: scene, faces: [ "UFR", "UR", "UBR", "FR", "R", "BR", "DFR", "DR", "DBR"], rotateX: CGFloat(rot), rotateY: CGFloat(0), rotateZ: CGFloat(0))
                 
             }, label: {
                 Text("Rotate")
@@ -52,7 +59,7 @@ struct CubeView: View {
             })
             
             Button(action: {
-                scene = createScene()
+                
                 
             }, label: {
                 Text("Reset")
@@ -91,23 +98,17 @@ func createScene() -> SCNScene {
     
 }
 
-
-func rightTrigger(scene: SCNScene) -> Void {
-    
-   
-    
+func rotate(scene: SCNScene, faces: [String], rotateX: CGFloat, rotateY: CGFloat, rotateZ: CGFloat) -> Void {
     for container in scene.rootNode.childNodes {
-        if ["UFR", "UR", "UBR", "FR", "R", "BR", "DFR", "DR", "DBR"].contains(container.name){ // first container
-            let rotationAction = SCNAction.rotateBy(x: -(.pi * 0.5), y: 0, z: 0, duration: 1)
+        if faces.contains(container.name ?? ""){ // first container
+            let rotationAction = SCNAction.rotateBy(x: rotateX, y: rotateY, z: rotateZ, duration: 1)
             container.runAction(rotationAction)
-        }
-        
-
-        if ["UBL", "UB", "UFR", "UL", "U", "FR", "UFL", "UF", "DFR"].contains(container.name){ // second container
-            let waitAction = SCNAction.wait(duration: 2)
-            let rotationAction = SCNAction.rotateBy(x: 0, y: -(.pi * 0.5), z: 0, duration: 1)
-            let sequenceAction = SCNAction.sequence([waitAction, rotationAction]) // Create a sequence of actions
-            container.runAction(sequenceAction)
+            
+            
+            //            let waitAction = SCNAction.wait(duration: 2)
+            //            let rotationAction = SCNAction.rotateBy(x: 0, y: -rotate, z: 0, duration: 1)
+            //            let sequenceAction = SCNAction.sequence([waitAction, rotationAction]) // Create a sequence of actions
+            //            container.runAction(sequenceAction)
         }
     }
     
