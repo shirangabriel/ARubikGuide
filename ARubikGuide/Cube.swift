@@ -30,7 +30,9 @@ struct Cube {
         
         let box = SCNBox(width: squareSize, height: squareSize, length: squareSize, chamferRadius: chamferRadius)
         
-        box.materials = getPiecesForCoordinates(x: Float(self.x), y: Float(self.y), z: Float(self.z))
+        let key = "\(Int(self.x))\(Int(self.y))\(Int(self.z))"
+        
+        box.materials = getPiecesForCoordinates(key: key).materials
         
         
         let node = SCNNode(geometry: box)
@@ -38,7 +40,7 @@ struct Cube {
         
         
         
-                nameFacesForReference(node: node)
+        nameFacesForReference(node: node)
         
         
         return node
@@ -81,47 +83,108 @@ struct Cube {
     }
     
     
-    private func getPiecesForCoordinates(x: Float, y: Float, z: Float) -> [SCNMaterial] {
-        let key = "\(Int(x))\(Int(y))\(Int(z))"
+    public func getPiecesForCoordinates(key: String) -> (name: String, materials: [SCNMaterial]) {
+        var name: String
+        var materials: [SCNMaterial]
+        
         
         switch key {
-            // Corners: UFL, UFR, UBL, UBR, DFL, DFR, DBL, DBR
-        case "-111": return face(up: .yellow, front: .green, left: .red) // UFL
-        case "111": return face(up: .yellow, front: .green, right: .orange) // UFR
-        case "-11-1": return face(up: .yellow, back: .blue, left: .red) // UBL
-        case "11-1": return face(up: .yellow, right: .orange, back: .blue) // UBR
             
-        case "-1-11": return face(front: .green, left: .red, down: .white) // DFL
-        case "1-11": return face(front: .green, right: .orange, down: .white) // DFR
-        case "-1-1-1": return face(back: .blue, left: .red, down: .white) // DBL
-        case "1-1-1": return face(right: .orange, back: .blue, down: .white) // DBR
-            
-            // Centers
-        case "010": return face(up: .yellow)
-        case "001": return face(front: .green)
-        case "100": return face(right: .orange)
-        case "00-1": return face(back: .blue)
-        case "-100": return face(left: .red)
-        case "0-10": return face(down: .white)
-            
-            // Edges
-        case "011": return face(up: .yellow, front: .green) // UF
-        case "110": return face(up: .yellow, right: .orange) // UR
-        case "01-1": return face(up: .yellow, back: .blue) // UB
-        case "-110": return face(up: .yellow, left: .red) // UL
-        case "0-11": return face(front: .green, down: .white) // DF
-        case "-1-10": return face(left: .red, down: .white) // DL
-        case "0-1-1": return face(back: .blue, down: .white) // DB
-        case "1-10": return face(right: .orange, down: .white) // DR
-        case "101": return face(front: .green, right: .orange) // FR
-        case "-101": return face(front: .green, left: .red) // FL
-            
-        case "10-1": return face(right: .orange, back: .blue) // BR
-        case "-10-1": return face(back: .blue, left: .red)  // BL
+            // Corner Pieces
+        case "-111":
+            name = "UFL"
+            materials =  face(up: .yellow, front: .green, left: .red)
+        case "111":
+            name = "UFR"
+            materials =  face(up: .yellow, front: .green, right: .orange)
+        case "-11-1":
+            name = "UBL"
+            materials =  face(up: .yellow, back: .blue, left: .red)
+        case "11-1":
+            name = "UBR"
+            materials =  face(up: .yellow, right: .orange, back: .blue)
+        case "-1-11":
+            name = "DFL"
+            materials =  face(front: .green, left: .red, down: .white)
+        case "1-11":
+            name = "DFR"
+            materials =  face(front: .green, right: .orange, down: .white)
+        case "-1-1-1":
+            name = "DBL"
+            materials =  face(back: .blue, left: .red, down: .white)
+        case "1-1-1":
+            name = "DBR"
+            materials =  face(right: .orange, back: .blue, down: .white)
             
             
-        default: return [coloredMaterial(with: .clear)]
+            // Center Pieces
+        case "010":
+            name = "U"
+            materials =  face(up: .yellow)
+        case "001":
+            name = "F"
+            materials =  face(front: .green)
+        case "100":
+            name = "R"
+            materials =  face(right: .orange)
+        case "00-1":
+            name = "B"
+            materials =  face(back: .blue)
+        case "-100":
+            name = "L"
+            materials =  face(left: .red)
+        case "0-10":
+            name = "D"
+            materials =  face(down: .white)
+            
+            
+            // Edge Pieces
+        case "011":
+            name = "UF"
+            materials =  face(up: .yellow, front: .green)
+        case "110":
+            name = "UR"
+            materials =  face(up: .yellow, right: .orange)
+        case "01-1":
+            name = "UB"
+            materials =  face(up: .yellow, back: .blue)
+        case "-110":
+            name = "UL"
+            materials =  face(up: .yellow, left: .red)
+        case "0-11":
+            name = "DF"
+            materials =  face(front: .green, down: .white)
+        case "-1-10":
+            name = "DL"
+            materials =  face(left: .red, down: .white)
+        case "0-1-1":
+            name = "DB"
+            materials =  face(back: .blue, down: .white)
+        case "1-10":
+            name = "DR"
+            materials =  face(right: .orange, down: .white)
+        case "101":
+            name = "FR"
+            materials =  face(front: .green, right: .orange)
+        case "-101":
+            name = "FL"
+            materials =  face(front: .green, left: .red)
+            
+        case "10-1":
+            name = "BR"
+            materials =  face(right: .orange, back: .blue)
+        case "-10-1":
+            name = "BL"
+            materials =  face(back: .blue, left: .red)
+            
+            
+        default:
+            name = ""
+            materials = [coloredMaterial(with: .clear)]
         }
+        
+        
+        return (name, materials)
         
     }
     
