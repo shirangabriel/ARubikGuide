@@ -28,10 +28,12 @@ struct CubeView: View {
                 SceneKitView(scene: scene, size: geometry.size)
                     .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
             }
-            
+            // "UFR", "UR", "UBR", "FR", "R", "BR", "DFR", "DR", "DBR",
             Button(action: {
-                rotate(scene: scene, faces: ["UFR", "UR", "UBR", "FR", "R", "BR", "DFR", "DR", "DBR"], rotateX: -CGFloat(rot), rotateY: CGFloat(0), rotateZ: CGFloat(0))
-                self.scene = createScene()
+                rotate(scene: scene, faces: ["DFL", "DF", "DFR",
+                                             "DL", "D", "DR",
+                                             "DBL", "DB", "DBR"], rotateX: CGFloat(rot), rotateY: CGFloat(0), rotateZ: 0)
+
                 
             }, label: {
                 Text("Rotate")
@@ -46,6 +48,7 @@ struct CubeView: View {
 
 
 func createScene() -> SCNScene {
+
     let scene = SCNScene()
     for i in -1...1 {
         for j in -1...1 {
@@ -73,6 +76,7 @@ func rotate(scene: SCNScene, faces: [String], rotateX: CGFloat, rotateY: CGFloat
     for container in scene.rootNode.childNodes {
         if faces.contains(container.name ?? ""){
             let rotationAction = SCNAction.rotateBy(x: rotateX, y: rotateY, z: rotateZ, duration: 1)
+
             container.runAction(rotationAction)
         }
     }
