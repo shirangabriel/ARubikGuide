@@ -30,9 +30,9 @@ struct CubeView: View {
             }
             // "UFR", "UR", "UBR", "FR", "R", "BR", "DFR", "DR", "DBR",
             Button(action: {
-                rotate(scene: scene, faces: ["DFL", "DF", "DFR",
-                                             "DL", "D", "DR",
-                                             "DBL", "DB", "DBR"], rotateX: CGFloat(rot), rotateY: CGFloat(0), rotateZ: 0)
+                rotate(scene: scene, faces: ["UFL", "UF", "UFR",
+                                             "FL", "F", "FR",
+                                             "DFL", "DF", "DFR"], rotateX: 0, rotateY: CGFloat(0), rotateZ: -CGFloat(rot))
 
                 
             }, label: {
