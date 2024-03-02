@@ -42,7 +42,7 @@ struct CubeView: View {
                 
                 rotate(scene: scene, faces: faces, rotateX: 0, rotateY: CGFloat(0), rotateZ: -CGFloat(rot))
                 
-                rData = CubeRotation().Rotate(rubik: rData);
+                rData = CubeRotation().Rotate(rubik: rData, face: "F");
                 print(faces)
                 
                 

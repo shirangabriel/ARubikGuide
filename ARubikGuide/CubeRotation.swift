@@ -8,33 +8,80 @@
 import Foundation
 
 struct CubeRotation {
-    func Rotate(rubik: [[[String]]]) -> [[[String]]] {
-        var front = rubik[0];
-        var back = rubik[1]
-        var left = rubik[2]
-        var right = rubik[3]
-        var up = rubik[4]
-        var down = rubik[5]
+    func Rotate(rubik: [[[String]]], face: String) -> [[[String]]] {
+        let rubikMap = getFaceIndices(faceName: face)
+        var rData = rubik
+        
+        let faceIndex = rubikMap["face"]
+        let leftIndex = rubikMap["left"]
+        let rightIndex = rubikMap["right"]
+        let upIndex = rubikMap["up"]
+        let downIndex = rubikMap["down"]
         
         
-        var rotatedFace: [[String]] = Array(repeating: Array(repeating: "", count: 3), count: 3)
+        let faceArray = rubik[faceIndex!]
         
-        for i in 0..<front.count {
-            for j in 0..<front[i].count {
-                rotatedFace[i][j] =  front[front.count - 1 - j][i]
+        
+        for i in 0..<faceArray.count {
+            for j in 0..<faceArray[i].count {
+                rData[faceIndex!][i][j] =  faceArray[faceArray.count - 1 - j][i]
             }
         }
         
-        for i in 0..<rotatedFace.count{
-            right[i][0] = rotatedFace[i][2]
-            left[i][2] = rotatedFace[i][0]
-            up[2][i] = rotatedFace[0][i]
-            down[0][i] = rotatedFace[2][i]
+        for i in 0..<rData[faceIndex!].count{
+            rData[leftIndex!][i][2] = rData[faceIndex!][i][0]
+            rData[rightIndex!][i][0] = rData[faceIndex!][i][2]
+            rData[upIndex!][2][i] = rData[faceIndex!][0][i]
+            rData[downIndex!][0][i] = rData[faceIndex!][2][i]
         }
         
-        front = rotatedFace
         
+        return rData
+    }
+    
+    
+    func getFaceIndices(faceName: String) -> [String: Int] {
+        var rubikMap: [String: Int] = [:]
         
-        return [rotatedFace, back, left, right, up, down]
+        switch faceName {
+        case "F":
+            rubikMap["face"] = 0
+            rubikMap["left"] = 2
+            rubikMap["right"] = 3
+            rubikMap["up"] = 40
+            rubikMap["down"] = 5
+        case "B":
+            rubikMap["face"] = 1
+            rubikMap["left"] = 3
+            rubikMap["right"] = 2
+            rubikMap["up"] = 4
+            rubikMap["down"] = 5
+        case "L":
+            rubikMap["face"] = 2
+            rubikMap["left"] = 1
+            rubikMap["right"] = 0
+            rubikMap["up"] = 4
+            rubikMap["down"] = 5
+        case "R":
+            rubikMap["face"] = 3
+            rubikMap["left"] = 0
+            rubikMap["right"] = 1
+            rubikMap["up"] = 4
+            rubikMap["down"] = 5
+        case "U":
+            rubikMap["face"] = 4
+            rubikMap["left"] = 2
+            rubikMap["right"] = 3
+            rubikMap["up"] = 1
+            rubikMap["down"] = 0
+        case "D":
+            rubikMap["face"] = 5
+            rubikMap["left"] = 2
+            rubikMap["right"] = 3
+            rubikMap["up"] = 0
+            rubikMap["down"] = 1
+        default:
+            break;
+        }
     }
 }
