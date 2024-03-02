@@ -83,5 +83,7 @@ struct CubeRotation {
         default:
             break;
         }
+        
+        return rubikMap
     }
 }
