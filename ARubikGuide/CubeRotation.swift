@@ -48,7 +48,7 @@ struct CubeRotation {
             rubikMap["face"] = 0
             rubikMap["left"] = 2
             rubikMap["right"] = 3
-            rubikMap["up"] = 40
+            rubikMap["up"] = 4
             rubikMap["down"] = 5
         case "B":
             rubikMap["face"] = 1
