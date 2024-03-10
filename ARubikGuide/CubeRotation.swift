@@ -86,4 +86,45 @@ struct CubeRotation {
         
         return rubikMap
     }
+    
+    
+    
+    func getFaceIndex(faceName: String) -> Int {
+        
+        switch faceName {
+        case "F":
+            return 0
+            
+        case "B":
+            return 1
+            
+        case "L":
+            return 2
+            
+        case "R":
+            return 3
+            
+        case "U":
+            return 4
+            
+        case "D":
+            return 5
+            
+        default:
+            return 0;
+        }
+        
+    }
+}
+
+func getPiecessOfFace(data: [[String]]) -> [String]  {
+    var pieces: [String] = []
+    for i in 0..<data.count {
+        for j in 0..<data[i].count {
+            pieces.append(data[i][j])
+        }
+    }
+    
+    
+    return pieces
 }

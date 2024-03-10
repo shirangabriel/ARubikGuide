@@ -33,14 +33,22 @@ struct CubeView: View {
             Button(action: {
                 
                 var faces: [String] = []
-                for i in 0..<rData[0].count {
-                    for j in 0..<rData[0][i].count {
-                        faces.append(rData[0][i][j])
+                for i in 0..<rData[1].count {
+                    for j in 0..<rData[1][i].count {
+                        faces.append(rData[1][i][j])
                     }
                 }
                 
                 
-                rotate(scene: scene, faces: faces, rotateX: 0, rotateY: CGFloat(0), rotateZ: -CGFloat(rot))
+                let pieces = getPiecessOfFace(data: rData[CubeRotation().getFaceIndices(faceName: "U")["face"]!])
+                
+                rotate(scene: scene,
+                       pieces: pieces,
+                       rotateX: 0,
+                       rotateY: CGFloat(0),
+                       rotateZ: -CGFloat(rot))
+                
+                // rotateFace("F", left)
                 
                 rData = CubeRotation().Rotate(rubik: rData, face: "F");
                 print(rData)
@@ -83,11 +91,11 @@ func createScene() -> SCNScene {
     
 }
 
-func rotate(scene: SCNScene, faces: [String], rotateX: CGFloat, rotateY: CGFloat, rotateZ: CGFloat) -> Void {
+func rotate(scene: SCNScene, pieces: [String], rotateX: CGFloat, rotateY: CGFloat, rotateZ: CGFloat) -> Void {
     for container in scene.rootNode.childNodes {
-        if faces.contains(container.name ?? ""){
+        if pieces.contains(container.name ?? ""){
             let rotationAction = SCNAction.rotateBy(x: rotateX, y: rotateY, z: rotateZ, duration: 1)
-        
+            
             container.runAction(rotationAction)
         }
     }
